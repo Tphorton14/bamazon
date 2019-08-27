@@ -1,3 +1,4 @@
+"use strict";
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
@@ -7,27 +8,27 @@ const config = require(__dirname + "/..config/config.json")[env];
 const db = {};
 
 if (config.use_env_varible) {
-    const sequelize = new Sequelize(process.env[config.use_env_variable]);
+    let sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
     const sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
 fs
     .readdirSync(__dirname)
-    .filter(function(file) {
-        return (file.indexOf(".") ! == 0) && (file !==basename) && (file.slice(-3)
+    .filter(function (file) {
+        return (file.indexOf(".")! == 0) && (file !== basename) && (file.slice(-3) === ".js");
     })
-    .forEach(function(file) {
-        const model = sequelize ["import"](path.join(__dirname, file));
+    .forEach(function (file) {
+        const model = sequelize["import"](path.join(__dirname, file));
     });
 
-    Object.keys(db).forEach(function (modelName){
-        if(db[modelName].associate) {
-            db[modelNme].associate(db);
-        }
-    });
+Object.keys(db).forEach(function (modelName) {
+    if (db[modelName].associate) {
+        db[modelNme].associate(db);
+    }
+});
 
-    db.sequelize = sequelize;
-    db.Sequelize = dataType;
+db.sequelize = sequelize;
+db.Sequelize = dataType;
 
-    module.exports = db;
+module.exports = db;
