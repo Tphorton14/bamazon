@@ -5,6 +5,8 @@ const port = process.env.PORT || 8080;
 
 const db = require("./models");
 
+
+// app.use adds functionality 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
