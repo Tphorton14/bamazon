@@ -80,6 +80,6 @@ db.sequelize.sync({ force: true })
         console.log(`\n${rows.length} Rows Inserted`)
     })
     .catch(function(err){
-        console.log('\nError', err);
+        console.log('\n\nError', err);
     });
 });
