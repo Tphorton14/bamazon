@@ -7,7 +7,7 @@ module.exports = function (app) {
         db.Products.findAll({}).then(function(rows){
             res.json(rows);
         }).catch(function(error) {
-            res.json({ error: error});
+            res.json({ error: error });
         });
     });
 
